@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MenuStyle.uss?fileID=7433441132597879392&amp;guid=dfaba3d35ea4e544c9a54a5c05b959ce&amp;type=3#MenuStyle" />
+    <ui:VisualElement style="width: 100%; height: 100%; align-items: center; justify-content: flex-end; opacity: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="upgrade-menu" class="frame-style" style="width: 150px; height: 150px; opacity: 0.85; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Panel.png?fileID=2800000&amp;guid=631f57ad60b776b44bd52b4d2d4e0c2f&amp;type=3#Panel&apos;); flex-direction: column; position: absolute; top: auto; left: 28%; bottom: 10px; align-items: center; justify-content: center;">
+            <ui:Button text="Upgrade!" display-tooltip-when-elided="true" name="upgrade-weapon" class="button-style" style="-unity-font: none; background-image: none; font-size: 15px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="upgrade-menu" class="frame-style" style="width: 150px; height: 150px; opacity: 0.85; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Panel.png?fileID=2800000&amp;guid=631f57ad60b776b44bd52b4d2d4e0c2f&amp;type=3#Panel&apos;); justify-content: center; bottom: 10px; position: absolute; left: auto;">
+            <ui:Button text="Upgrade!" display-tooltip-when-elided="true" name="upgrade-health" class="button-style" style="opacity: 1; display: flex; visibility: visible; overflow: hidden; font-size: 15px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="upgrade-menu" class="frame-style" style="width: 150px; height: 150px; opacity: 0.85; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Panel.png?fileID=2800000&amp;guid=631f57ad60b776b44bd52b4d2d4e0c2f&amp;type=3#Panel&apos;); bottom: 10px; right: 318px; position: absolute;">
+            <ui:Button text="Upgrade!" display-tooltip-when-elided="true" name="upgrade-healing" class="button-style" style="font-size: 15px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

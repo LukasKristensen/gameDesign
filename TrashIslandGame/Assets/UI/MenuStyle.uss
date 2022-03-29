@@ -1,0 +1,48 @@
+.frame-style {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('project://database/Assets/UI/Panel.png?fileID=2800000&guid=631f57ad60b776b44bd52b4d2d4e0c2f&type=3#Panel');
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.button-style {
+    background-color: rgb(90, 90, 90);
+    background-image: none;
+    width: 100px;
+    height: 30px;
+    justify-content: flex-start;
+    align-items: auto;
+    bottom: auto;
+    position: relative;
+    left: auto;
+    top: 30%;
+    -unity-font: none;
+    -unity-font-style: normal;
+    font-size: 16px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+    color: rgba(255, 255, 255, 255);
+    text-shadow: 0 0 -1px rgba(0, 0, 0, 255);
+    -unity-background-scale-mode: stretch-to-fill;
+    border-left-color: rgb(51, 51, 51);
+    border-right-color: rgb(51, 51, 51);
+    border-top-color: rgb(65, 65, 65);
+    border-bottom-color: rgb(38, 38, 38);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-top-left-radius: -54px;
+    border-bottom-left-radius: -54px;
+    border-top-right-radius: -54px;
+    border-bottom-right-radius: -54px;
+    opacity: 1;
+}
