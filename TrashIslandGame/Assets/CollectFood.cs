@@ -14,12 +14,6 @@ public class CollectFood : MonoBehaviour, IInteractable
         Debug.Log("Health: "+playerScript.health);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void Interact(Inventory inventory)
     {
         float distancePlayerFruit = Vector3.Distance(player.transform.position, transform.position);
