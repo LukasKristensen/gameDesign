@@ -20,7 +20,7 @@ public abstract class Friendly :Killable
 
 public abstract class Killable : MonoBehaviour
 {
-    [SerializeField] private int health = 3;
+    public int health = 3;
 
     public void TakeDamage(int damage)
     {
