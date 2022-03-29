@@ -91,7 +91,7 @@ namespace PellesAssets
 			_fallTimeoutDelta = FallTimeout;
 			_fpsInputs.Default.Jump.performed += AttemptJump;
 			_fpsInputs.Default.Interact.performed += Interact;
-			_fpsInputs.Default.Build.performed += BuildMenu;
+			//_fpsInputs.Default.Build.performed += BuildMenu;
 		}
 
 		private void BuildMenu(InputAction.CallbackContext obj)

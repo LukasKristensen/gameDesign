@@ -58,14 +58,7 @@ public class EnemyBehavior : Killable
         target.TakeDamage(attackDamage);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.TryGetComponent<IDamaging>(out IDamaging damageDealer)) return;
-        if (damageDealer.Active)
-        {
-            TakeDamage(damageDealer.Damage);
-        }
-    }
+    
 
     
 }

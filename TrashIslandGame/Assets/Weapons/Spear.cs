@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class Spear : Weapon
 {
-    
-    // Start is called before the first frame update
-    
-
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision other)
     {
-        
+        Debug.Log("trying to Deal Damage");
+        if (!other.transform.TryGetComponent<EnemyBehavior>(out EnemyBehavior enemy)) return;
+        if (Active)
+        {
+            enemy.TakeDamage(Damage);
+            Debug.Log("dealing damage");
+        } throw new NotImplementedException();
     }
 
     
