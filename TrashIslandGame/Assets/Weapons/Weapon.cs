@@ -9,6 +9,8 @@ public abstract class Weapon : MonoBehaviour,IDamaging
     private static readonly int Fire1 = Animator.StringToHash("Fire");
 
     private FPSInputs _fpsInputs;
+    [SerializeField] private Transform camera;
+    
 
     public int Damage { get; set; }
     public bool Active { get; set; }
@@ -28,6 +30,13 @@ public abstract class Weapon : MonoBehaviour,IDamaging
         _animator.SetBool(Fire1,true);
         firing = true;
         Active = true;
+        if (Physics.Raycast(camera.position,camera.forward,out RaycastHit hit))
+        {
+            if (hit.collider.TryGetComponent<EnemyBehavior>(out EnemyBehavior enemy))
+            {
+                enemy.TakeDamage(100);
+            }
+        }
     }
 
     public void StopFiring()
