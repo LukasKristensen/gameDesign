@@ -80,6 +80,15 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Build"",
+                    ""type"": ""Button"",
+                    ""id"": ""55068f9a-22b5-4a2a-8805-658f98f4d375"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17807233-c2e4-4008-a90c-634737a0cd38"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Build"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
         m_Default_Interact = m_Default.FindAction("Interact", throwIfNotFound: true);
         m_Default_Sprint = m_Default.FindAction("Sprint", throwIfNotFound: true);
         m_Default_Jump = m_Default.FindAction("Jump", throwIfNotFound: true);
+        m_Default_Build = m_Default.FindAction("Build", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +292,7 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Interact;
     private readonly InputAction m_Default_Sprint;
     private readonly InputAction m_Default_Jump;
+    private readonly InputAction m_Default_Build;
     public struct DefaultActions
     {
         private @FPSInputs m_Wrapper;
@@ -281,6 +303,7 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Default_Interact;
         public InputAction @Sprint => m_Wrapper.m_Default_Sprint;
         public InputAction @Jump => m_Wrapper.m_Default_Jump;
+        public InputAction @Build => m_Wrapper.m_Default_Build;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +331,9 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnJump;
+                @Build.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBuild;
+                @Build.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBuild;
+                @Build.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBuild;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -330,6 +356,9 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Build.started += instance.OnBuild;
+                @Build.performed += instance.OnBuild;
+                @Build.canceled += instance.OnBuild;
             }
         }
     }
@@ -342,5 +371,6 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnBuild(InputAction.CallbackContext context);
     }
 }

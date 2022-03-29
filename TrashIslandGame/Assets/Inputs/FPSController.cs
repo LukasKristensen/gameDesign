@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace PellesAssets
 {
-	public class FPSController : MonoBehaviour
+	public class FPSController : Friendly
 	{
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
@@ -66,20 +67,20 @@ namespace PellesAssets
 		private GameObject _mainCamera;
 		[SerializeField] private bool isSprinting;
 		private FPSInputs _fpsInputs;
+		public Inventory _inventory;
+		public Weapon currentWeapon;
+		public BuildMenuScript BuildMenuScript;
 
 		private const float _threshold = 0.01f;
 
-		private void Awake()
+		
+		private void Start()
 		{
 			// get a reference to our main camera
 			if (_mainCamera == null)
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
-		}
-
-		private void Start()
-		{
 			_controller = GetComponent<CharacterController>();
 			_fpsInputs = new FPSInputs();
 			_fpsInputs.Default.Enable();
@@ -89,6 +90,33 @@ namespace PellesAssets
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 			_fpsInputs.Default.Jump.performed += AttemptJump;
+			_fpsInputs.Default.Interact.performed += Interact;
+			_fpsInputs.Default.Build.performed += BuildMenu;
+		}
+
+		private void BuildMenu(InputAction.CallbackContext obj)
+		{
+			if (currentWeapon.gameObject.activeInHierarchy)
+			{
+				currentWeapon.gameObject.SetActive(false);
+				BuildMenuScript.gameObject.SetActive(true);
+			}
+			else
+			{
+				currentWeapon.gameObject.SetActive(true);
+				BuildMenuScript.gameObject.SetActive(false);
+			}
+		}
+
+		private void Interact(InputAction.CallbackContext obj)
+		{
+			if (Physics.Raycast(transform.position,CinemachineCameraTarget.transform.forward,out RaycastHit hit))
+			{
+				if (hit.collider.TryGetComponent(out IInteractable interactable))
+				{
+					interactable.Interact(_inventory);
+				}
+			}
 		}
 
 		private void FixedUpdate()

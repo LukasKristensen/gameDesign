@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class FriendliesManager : MonoBehaviour
 {
-    public List<GameObject> friendlies;
+    public List<Friendly> friendlies;
     
 }

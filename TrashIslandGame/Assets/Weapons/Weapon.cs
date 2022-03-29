@@ -25,7 +25,6 @@ public abstract class Weapon : MonoBehaviour,IDamaging
 
     private void Fire(InputAction.CallbackContext callbackContext)
     {
-        Debug.Log("Firing");
         _animator.SetBool(Fire1,true);
         firing = true;
         Active = true;
