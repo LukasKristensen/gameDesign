@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +13,8 @@ public class EnemyBehavior : Killable
     [SerializeField] private float attackRange;
     [SerializeField] private float attackTimer;
     [SerializeField] private int attackDamage;
-    
+    [SerializeField] private GameObject arm1;
+    [SerializeField] private GameObject arm2;
     
     
     private void Awake()
@@ -45,6 +47,11 @@ public class EnemyBehavior : Killable
             }
         }
         _navMeshAgent.destination = target.transform.position;
+        if (health<=5)
+        {
+            arm1.SetActive(false);
+            arm2.SetActive(false);
+        }
     }
 
     private void OnDrawGizmosSelected()

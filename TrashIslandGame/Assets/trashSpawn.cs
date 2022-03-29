@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using PellesAssets;
 
 
 public class trashSpawn : MonoBehaviour,IInteractable
@@ -61,7 +62,7 @@ public class trashSpawn : MonoBehaviour,IInteractable
         }
         teirs[teir].SetActive(true);
     }
-    public void Interact(Inventory inventory)
+    public void Interact(FPSController player, Inventory inventory)
     {
         if (teir<=0)
         {

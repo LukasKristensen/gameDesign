@@ -114,11 +114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f34f00c2e960f4c979714ca10e0d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 10
   target: {fileID: 0}
-  attackRange: 1.62
+  attackRange: 2.46
   attackTimer: 0
-  attackDamage: 1
+  attackDamage: 10
+  arm1: {fileID: 7360016685666762166}
+  arm2: {fileID: 3152595429015123348}
 --- !u!195 &4293142473033179288
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -287,8 +289,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0387dd12316dc444e9397475dd061a63, type: 3}
+--- !u!1 &3152595429015123348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3721341462095617627, guid: 0387dd12316dc444e9397475dd061a63, type: 3}
+  m_PrefabInstance: {fileID: 7465674602273625137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6922558209053012954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0387dd12316dc444e9397475dd061a63, type: 3}
+  m_PrefabInstance: {fileID: 7465674602273625137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7360016685666762166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 125941707453868423, guid: 0387dd12316dc444e9397475dd061a63, type: 3}
   m_PrefabInstance: {fileID: 7465674602273625137}
   m_PrefabAsset: {fileID: 0}

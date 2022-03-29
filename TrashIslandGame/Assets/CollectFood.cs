@@ -5,16 +5,11 @@ using PellesAssets;
 
 public class CollectFood : MonoBehaviour, IInteractable
 {
-    public GameObject player;
-    public FPSController playerScript;
-
+    public int healing = 15; 
+    
     // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Health: "+playerScript.health);
-    }
-
-    public void Interact(Inventory inventory)
+   
+    public void Interact(FPSController player, Inventory inventory)
     {
         float distancePlayerFruit = Vector3.Distance(player.transform.position, transform.position);
         Debug.Log("Distance to fruit: " + distancePlayerFruit);
@@ -22,8 +17,8 @@ public class CollectFood : MonoBehaviour, IInteractable
         if (distancePlayerFruit < 5f)
         {
             Debug.Log("Collected health point");
-            playerScript.health += 15;
-            Debug.Log("Current Health Points: " + playerScript.health);
+            player.health += healing;
+            Debug.Log("Current Health Points: " + player.health);
             Destroy(gameObject);
         }
     }

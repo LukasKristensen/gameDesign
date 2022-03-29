@@ -114,7 +114,7 @@ namespace PellesAssets
 			{
 				if (hit.collider.TryGetComponent(out IInteractable interactable))
 				{
-					interactable.Interact(_inventory);
+					interactable.Interact( this,_inventory);
 				}
 			}
 		}
