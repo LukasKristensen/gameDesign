@@ -92,7 +92,6 @@ MonoBehaviour:
   teir: 1
   enemyPrefab: {fileID: 4293142473033179295, guid: 8dd2847a69e91994482f5f78c6d9a536, type: 3}
   loot:
-    ResourceMode: 1
     Metal: 3
     Plastic: 3
   SpawnCooldown: 2
