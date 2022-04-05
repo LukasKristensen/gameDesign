@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teir: 1
-  enemyPrefab: {fileID: 4293142473033179295, guid: 8dd2847a69e91994482f5f78c6d9a536, type: 3}
+  enemyPrefab: {fileID: 5753235613288401464, guid: 518aa1e6932823f4fbbbb0f10ea8a285, type: 3}
   loot:
     Metal: 3
     Plastic: 3
