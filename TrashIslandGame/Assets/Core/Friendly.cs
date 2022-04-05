@@ -1,33 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Core;
 
 public abstract class Friendly :Killable
 {
     public bool targetable = true;
+    private FriendliesManager fm;
     protected void Awake()
     {
-        FindObjectOfType<FriendliesManager>().friendlies.Add(this);
+        fm = FindObjectOfType<FriendliesManager>();
+        fm?.Add(this);
     }
 
     private void OnDestroy()
     {
-        FindObjectOfType<FriendliesManager>().friendlies.Remove(this);
-    }
-}
-
-
-public abstract class Killable : MonoBehaviour
-{
-    public int health = 3;
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        fm?.Remove(this);
     }
 }

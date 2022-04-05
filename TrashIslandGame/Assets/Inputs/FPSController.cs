@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Core;
+using Equipment;
+using InventoryItems;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -68,9 +74,10 @@ namespace PellesAssets
 		[SerializeField] private bool isSprinting;
 		private FPSInputs _fpsInputs;
 		public Inventory _inventory;
-		public Weapon currentWeapon;
-		public BuildMenuScript BuildMenuScript;
-
+		public EquippableAsset Spear;
+		public EquippableAsset Hammer;
+		public EquippableAsset currentRightHand;
+		
 		private const float _threshold = 0.01f;
 
 		
@@ -91,21 +98,26 @@ namespace PellesAssets
 			_fallTimeoutDelta = FallTimeout;
 			_fpsInputs.Default.Jump.performed += AttemptJump;
 			_fpsInputs.Default.Interact.performed += Interact;
-			//_fpsInputs.Default.Build.performed += BuildMenu;
+			_fpsInputs.Default.Attack.performed += Fire;
+			_fpsInputs.Default.Equip1.performed += Swap;
+
 		}
 
-		private void BuildMenu(InputAction.CallbackContext obj)
+		private void Swap(InputAction.CallbackContext obj)
 		{
-			if (currentWeapon.gameObject.activeInHierarchy)
+			if (currentRightHand == Spear)
 			{
-				currentWeapon.gameObject.SetActive(false);
-				BuildMenuScript.gameObject.SetActive(true);
+				DrawEquipment(Hammer,false);
 			}
 			else
 			{
-				currentWeapon.gameObject.SetActive(true);
-				BuildMenuScript.gameObject.SetActive(false);
+				DrawEquipment(Spear,false);
 			}
+		}
+
+		private void Fire(InputAction.CallbackContext obj)
+		{
+			currentRightHand?.instant?.Fire(obj);
 		}
 
 		private void Interact(InputAction.CallbackContext obj)
@@ -259,10 +271,36 @@ namespace PellesAssets
 			Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
 
 			Gizmos.color = Grounded ? transparentGreen : transparentRed;
-
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
-			
+		}
+
+		public void Equip(EquippableAsset equippableAsset)
+		{
+			switch (equippableAsset.type)
+			{
+				case EquippableType.Hammer:
+					Hammer = equippableAsset;
+					DrawEquipment(Hammer,false);
+					break;
+				case EquippableType.Spear:
+					Spear = equippableAsset;
+					DrawEquipment(Spear,true);
+					break;
+				case EquippableType.Shield:
+					break;
+				case EquippableType.Sword:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+		
+		private void DrawEquipment(EquippableAsset equippableAsset,bool deletePrevious)
+		{
+			currentRightHand?.Holster(deletePrevious);
+			currentRightHand = equippableAsset;
+			equippableAsset.Draw(transform);
 		}
 	}
 }

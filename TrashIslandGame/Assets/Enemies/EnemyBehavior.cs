@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
+using Object = UnityEngine.Object;
 
 public class EnemyBehavior : Killable
 {
@@ -15,14 +17,14 @@ public class EnemyBehavior : Killable
     [SerializeField] private int attackDamage;
     [SerializeField] private GameObject arm1;
     [SerializeField] private GameObject arm2;
-    
-    
+    [SerializeField] private GameObject trashPrefab;
+
+
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _manager = FindObjectOfType<FriendliesManager>();
     }
-
     private void Update()
     {
         attackTimer -= Time.deltaTime;
@@ -53,19 +55,19 @@ public class EnemyBehavior : Killable
             arm2.SetActive(false);
         }
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,attackRange);
     }
-
     private void Attack()
     {
         target.TakeDamage(attackDamage);
     }
-
-    
-
+    public override void Die()
+    {
+        Instantiate(trashPrefab,transform.position,Quaternion.identity);
+        Destroy(gameObject);
+    }
     
 }

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ffcde37b116704bba90fa37bf1f1c0, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 24124ed02d3a46e48ac00924df05ed03, type: 3}
+  m_Name: Stick
   m_EditorClassIdentifier: 
-  Resources:
-    Metal: 1
-    Plastic: 0
+  prefab: {fileID: 6990770213174039987, guid: 9c9defb523cb4a843a01ff0401edd2f5, type: 3}
+  cost: []
+  hand: 1
+  type: 1
+  teir: 0

@@ -1,9 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendliesManager : MonoBehaviour
+namespace Core
 {
-    public List<Friendly> friendlies;
-    
+    public class FriendliesManager : MonoBehaviour
+    {
+        public List<Friendly> friendlies;
+
+        public void Add(Friendly friendly)
+        {
+            friendlies.Add(friendly);
+        }
+        public void Remove(Friendly friendly)
+        {
+            if (friendlies.Contains(friendly))
+            {
+                friendlies.Remove(friendly);
+            }
+        }
+    }
 }

@@ -121,6 +121,7 @@ MonoBehaviour:
   attackDamage: 10
   arm1: {fileID: 7360016685666762166}
   arm2: {fileID: 3152595429015123348}
+  trashPrefab: {fileID: 6725803127198538343, guid: 756df534c683bdd47903dc7df1ef984a, type: 3}
 --- !u!195 &4293142473033179288
 NavMeshAgent:
   m_ObjectHideFlags: 0

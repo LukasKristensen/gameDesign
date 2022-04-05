@@ -89,6 +89,24 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Equip1"",
+                    ""type"": ""Button"",
+                    ""id"": ""54683f6a-e701-4caf-9af1-eb46a06dfcba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Equip2"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc87f192-8067-4edf-aeca-daec36aeb744"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +230,28 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Build"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60652aca-2197-4b9a-b2d3-e940374cc1f7"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae57647b-ff5c-4483-97b8-fd6fc02fd88f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +267,8 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
         m_Default_Sprint = m_Default.FindAction("Sprint", throwIfNotFound: true);
         m_Default_Jump = m_Default.FindAction("Jump", throwIfNotFound: true);
         m_Default_Build = m_Default.FindAction("Build", throwIfNotFound: true);
+        m_Default_Equip1 = m_Default.FindAction("Equip1", throwIfNotFound: true);
+        m_Default_Equip2 = m_Default.FindAction("Equip2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +335,8 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Sprint;
     private readonly InputAction m_Default_Jump;
     private readonly InputAction m_Default_Build;
+    private readonly InputAction m_Default_Equip1;
+    private readonly InputAction m_Default_Equip2;
     public struct DefaultActions
     {
         private @FPSInputs m_Wrapper;
@@ -304,6 +348,8 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Default_Sprint;
         public InputAction @Jump => m_Wrapper.m_Default_Jump;
         public InputAction @Build => m_Wrapper.m_Default_Build;
+        public InputAction @Equip1 => m_Wrapper.m_Default_Equip1;
+        public InputAction @Equip2 => m_Wrapper.m_Default_Equip2;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +380,12 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                 @Build.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBuild;
                 @Build.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBuild;
                 @Build.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBuild;
+                @Equip1.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEquip1;
+                @Equip1.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEquip1;
+                @Equip1.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEquip1;
+                @Equip2.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEquip2;
+                @Equip2.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEquip2;
+                @Equip2.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEquip2;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -359,6 +411,12 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                 @Build.started += instance.OnBuild;
                 @Build.performed += instance.OnBuild;
                 @Build.canceled += instance.OnBuild;
+                @Equip1.started += instance.OnEquip1;
+                @Equip1.performed += instance.OnEquip1;
+                @Equip1.canceled += instance.OnEquip1;
+                @Equip2.started += instance.OnEquip2;
+                @Equip2.performed += instance.OnEquip2;
+                @Equip2.canceled += instance.OnEquip2;
             }
         }
     }
@@ -372,5 +430,7 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnBuild(InputAction.CallbackContext context);
+        void OnEquip1(InputAction.CallbackContext context);
+        void OnEquip2(InputAction.CallbackContext context);
     }
 }

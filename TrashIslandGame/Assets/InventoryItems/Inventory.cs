@@ -1,39 +1,27 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Inventory", menuName = "ScriptableObjects/Inventory", order = 1)]
-public class Inventory : ScriptableObject
+
+namespace InventoryItems
 {
-    public List<Holdable> currentInventory;
-    
-    public bool ChangeInventory(List<Item> items)
+    [CreateAssetMenu(fileName = "Inventory", menuName = "ScriptableObjects/Inventory", order = 1)]
+    public class Inventory : ScriptableObject
     {
-        var valid = true;
-        foreach (var item in items)
-        {
-            foreach (var invItem in currentInventory.Where(invItem => invItem==item.objectRefrence))
-            {
-                invItem.amount += item.amount;
-                if (invItem.amount<0)
-                {
-                    valid = false;
-                }
-            }
-        }
+        public int Metal;
+        public int Plastic;
 
-        if (!valid)
+        public bool TryExchange(Cost cost)
         {
-            foreach (var item in items)
+            if (Metal - cost.Metal < 0 || Plastic - cost.Plastic < 0)
             {
-                foreach (var invItem in currentInventory.Where(invItem => invItem==item.objectRefrence))
-                {
-                    invItem.amount -= item.amount;
-                }
+                return false;
             }
+            Metal -= cost.Metal;
+            Plastic -= cost.Plastic;
+            return true;
         }
-
-        return valid;
+        public void TryExchange(Loot loot)
+        {
+            Metal += loot.Metal;
+            Plastic += loot.Plastic;
+        }
     }
 }
