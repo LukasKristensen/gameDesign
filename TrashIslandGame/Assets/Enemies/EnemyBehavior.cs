@@ -75,10 +75,7 @@ public class EnemyBehavior : Killable
     private void Attack()
     {
         target.TakeDamage(attackDamage);
-        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
-        {
-            animator.SetBool("Attack", true);
-        }   
+        animator.SetBool("Attack", true);
 
     }
     public override void Die()
