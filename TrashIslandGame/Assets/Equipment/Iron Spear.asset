@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6990770213174039987, guid: 2b4f7e80290b73f4f8e491158002d884, type: 3}
   cost:
-    Metal: 0
-    Plastic: 0
+    Metal: 20
+    Plastic: 20
   type: 1
   teir: 2
   instant: {fileID: 0}

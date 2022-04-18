@@ -11,7 +11,7 @@
     </ui:VisualElement>
     <ui:VisualElement name="Stats" style="left: 0; top: 0; position: absolute; width: 321px; height: 50px; flex-direction: row;">
         <ui:VisualElement name="upgrade-menu" class="frame-style" style="width: 75px; height: 75px; opacity: 0.85; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Icons/health-normal.png?fileID=2800000&amp;guid=5a4f30de9c8828a48ac9de75360eb2a0&amp;type=3#health-normal&apos;); flex-direction: column; position: absolute; top: auto; left: auto; bottom: auto; align-items: center; justify-content: center;">
-            <ui:Label text="36" display-tooltip-when-elided="true" name="health_label" style="font-size: 30px; color: rgb(255, 255, 255);" />
+            <ui:Label text="36" display-tooltip-when-elided="true" name="health-label" style="font-size: 30px; color: rgb(255, 255, 255);" />
         </ui:VisualElement>
         <ui:VisualElement name="upgrade-menu" class="frame-style" style="width: 75px; height: 75px; opacity: 0.85; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Icons/stone-pile.png?fileID=2800000&amp;guid=ef092938f2ecfe94897c45718bc978e0&amp;type=3#stone-pile&apos;); justify-content: center; bottom: auto; position: absolute; left: 80px; top: auto; right: auto;">
             <ui:Label text="36" display-tooltip-when-elided="true" name="metal-label" style="font-size: 30px; color: rgb(255, 255, 255);" />

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2206410434240295462}
   - component: {fileID: 2206410434240295463}
+  - component: {fileID: 973910495696218218}
   m_Layer: 5
   m_Name: StatsAndTools
   m_TagString: Untagged
@@ -48,3 +49,16 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: c1f2cbef58788b7468c9335153a5b4a4, type: 3}
   m_SortingOrder: 0
+--- !u!114 &973910495696218218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206410434240295456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf1042786bebd2438dc01db07b77c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: a6b3f2fa700683b439648a242d842da7, type: 2}

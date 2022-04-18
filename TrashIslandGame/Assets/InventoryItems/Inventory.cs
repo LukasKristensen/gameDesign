@@ -5,6 +5,7 @@ namespace InventoryItems
     [CreateAssetMenu(fileName = "Inventory", menuName = "ScriptableObjects/Inventory", order = 1)]
     public class Inventory : ScriptableObject
     {
+        public int health;
         public int Metal;
         public int Plastic;
 

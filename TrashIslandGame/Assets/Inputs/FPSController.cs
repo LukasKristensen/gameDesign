@@ -8,6 +8,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -77,9 +79,14 @@ namespace PellesAssets
 		public EquippableAsset Spear;
 		public EquippableAsset Hammer;
 		public EquippableAsset currentRightHand;
+		[SerializeField] private float rayCastRange;
+		private UIDocument upgradeMenu;
+		private VisualElement backgroundMenu;
+		private Label upgradePlasticCost;
+		private Label upgradeMetalCost;
 		
 		private const float _threshold = 0.01f;
-
+	
 		
 		private void Start()
 		{
@@ -100,7 +107,11 @@ namespace PellesAssets
 			_fpsInputs.Default.Interact.performed += Interact;
 			_fpsInputs.Default.Attack.performed += Fire;
 			_fpsInputs.Default.Equip1.performed += Swap;
-
+			upgradeMenu = GetComponent<UIDocument>();
+			var root = upgradeMenu.rootVisualElement;
+			backgroundMenu =root.Q<VisualElement>("Background");
+			upgradePlasticCost = root.Q<Label>("plastic-cost-label");
+			upgradeMetalCost = root.Q<Label>("metal-cost-label");
 		}
 
 		private void Swap(InputAction.CallbackContext obj)
@@ -131,6 +142,13 @@ namespace PellesAssets
 			}
 		}
 
+		private void Update()
+		{
+			CheckForHoverables();
+		}
+
+		
+
 		private void FixedUpdate()
 		{
 			JumpAndGravity();
@@ -138,12 +156,26 @@ namespace PellesAssets
 			Move();
 			CameraRotation();
 		}
-
+		
+		private void CheckForHoverables()
+		{
+			if (Physics.Raycast(transform.position,CinemachineCameraTarget.transform.forward,out RaycastHit hit,rayCastRange))
+			{
+				if (hit.collider.TryGetComponent(out IHoverable hoverable))
+				{
+					Cost cost = hoverable.OnHover();
+					backgroundMenu.visible = true;
+					upgradeMetalCost.text = cost.Metal.ToString();
+					upgradePlasticCost.text = cost.Plastic.ToString();
+					return;
+				}
+			}
+			backgroundMenu.visible = false;
+		}
 		
 
 		private void GroundedCheck()
 		{
-			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 		}

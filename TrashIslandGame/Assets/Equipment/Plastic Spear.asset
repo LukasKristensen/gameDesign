@@ -15,7 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 6990770213174039987, guid: cf0b6f44a02b2fa41b7fec3223439404, type: 3}
   cost:
     Metal: 0
-    Plastic: 0
+    Plastic: 10
   type: 1
   teir: 1
   instant: {fileID: 0}

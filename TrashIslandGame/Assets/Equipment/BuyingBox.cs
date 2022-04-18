@@ -1,11 +1,12 @@
 using System;
+using Core;
 using InventoryItems;
 using PellesAssets;
 using UnityEngine;
 
 namespace Equipment
 {
-    public class BuyingBox : MonoBehaviour,IInteractable
+    public class BuyingBox : MonoBehaviour,IInteractable,IHoverable
     {
         [SerializeField] private EquippableAsset equippableAsset;
         
@@ -38,6 +39,10 @@ namespace Equipment
             player.Equip(equippableAsset);
         }
 
-        
+
+        public Cost OnHover()
+        {
+            return equippableAsset.cost;
+        }
     }
 }

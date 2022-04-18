@@ -1,10 +1,11 @@
+using Core;
 using InventoryItems;
 using PellesAssets;
 using UnityEngine;
 
 namespace Buildings
 {
-    public class ConstructionSite : MonoBehaviour,IInteractable
+    public class ConstructionSite : MonoBehaviour,IInteractable,IHoverable
     {
         private ConstructionManager constructionManager;
         [SerializeField] private Cost cost;
@@ -27,6 +28,11 @@ namespace Buildings
             Building.SetActive(true);
             constructionManager?.RemoveSite(gameObject);
             Destroy(gameObject);
+        }
+
+        public Cost OnHover()
+        {
+            return cost;
         }
     }
 }
