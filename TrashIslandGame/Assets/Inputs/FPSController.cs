@@ -112,6 +112,7 @@ namespace PellesAssets
 			backgroundMenu =root.Q<VisualElement>("Background");
 			upgradePlasticCost = root.Q<Label>("plastic-cost-label");
 			upgradeMetalCost = root.Q<Label>("metal-cost-label");
+			
 		}
 
 		private void Swap(InputAction.CallbackContext obj)
@@ -145,6 +146,7 @@ namespace PellesAssets
 		private void Update()
 		{
 			CheckForHoverables();
+			_inventory.health = health;
 		}
 
 		

@@ -23,6 +23,7 @@ public class ConstructionManager : MonoBehaviour
     public void AddSite(GameObject site)
     {
         contructionSites.Add(site);
+        site.SetActive(false);
     }
 
     public void RemoveSite(GameObject site)
