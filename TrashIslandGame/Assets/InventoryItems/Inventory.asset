@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ffcde37b116704bba90fa37bf1f1c0, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  health: 115
-  Metal: 90
-  Plastic: 60
+  health: 100
+  Metal: 70
+  Plastic: 10

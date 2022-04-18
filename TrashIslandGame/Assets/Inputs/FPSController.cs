@@ -84,7 +84,7 @@ namespace PellesAssets
 		private VisualElement backgroundMenu;
 		private Label upgradePlasticCost;
 		private Label upgradeMetalCost;
-		
+		private Label upgradeTitleCost;
 		private const float _threshold = 0.01f;
 	
 		
@@ -112,6 +112,7 @@ namespace PellesAssets
 			backgroundMenu =root.Q<VisualElement>("Background");
 			upgradePlasticCost = root.Q<Label>("plastic-cost-label");
 			upgradeMetalCost = root.Q<Label>("metal-cost-label");
+			upgradeTitleCost = root.Q<Label>("title");
 			if (currentRightHand == Spear)
 			{
 				DrawEquipment(Hammer);
@@ -190,10 +191,11 @@ namespace PellesAssets
 			{
 				if (hit.collider.TryGetComponent(out IHoverable hoverable))
 				{
-					Cost cost = hoverable.OnHover();
+					CostAndName costAndName = hoverable.OnHover();
 					backgroundMenu.visible = true;
-					upgradeMetalCost.text = cost.Metal.ToString();
-					upgradePlasticCost.text = cost.Plastic.ToString();
+					upgradeTitleCost.text = costAndName.UIText;
+					upgradeMetalCost.text = costAndName.cost.Metal.ToString();
+					upgradePlasticCost.text = costAndName.cost.Plastic.ToString();
 					return;
 				}
 			}

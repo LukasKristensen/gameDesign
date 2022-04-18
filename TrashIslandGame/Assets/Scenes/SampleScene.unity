@@ -4584,11 +4584,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011076557799220872, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8011076557799220872, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011076557799220886, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
+      propertyPath: uiText
+      value: Build Hut?
       objectReference: {fileID: 0}
     - target: {fileID: 8011076557799220886, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
       propertyPath: Building
@@ -11139,6 +11143,10 @@ PrefabInstance:
       value: ContructionSite
       objectReference: {fileID: 0}
     - target: {fileID: 8011076557799220886, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
+      propertyPath: uiText
+      value: Build WorkBench?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011076557799220886, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
       propertyPath: Building
       value: 
       objectReference: {fileID: 563400741}
@@ -17090,6 +17098,10 @@ PrefabInstance:
     - target: {fileID: 8011076557799220872, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
       propertyPath: m_Name
       value: AnvilContructionSite
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011076557799220886, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
+      propertyPath: uiText
+      value: Build Anvil?
       objectReference: {fileID: 0}
     - target: {fileID: 8011076557799220886, guid: 63b83c2f6959fa94da034b416e98a942, type: 3}
       propertyPath: Building

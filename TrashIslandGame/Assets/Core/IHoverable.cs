@@ -4,6 +4,6 @@ namespace Core
 {
     public interface IHoverable
     {
-        Cost OnHover();
+        CostAndName OnHover();
     }
 }

@@ -37,12 +37,16 @@ namespace Equipment
             }
             if (!inventory.TryExchange(equippableAsset.cost)) return;
             player.Equip(equippableAsset);
+            Destroy(gameObject);
         }
 
 
-        public Cost OnHover()
+        public CostAndName OnHover()
         {
-            return equippableAsset.cost;
+            CostAndName newCost = new CostAndName();
+            newCost.cost = equippableAsset.cost;
+            newCost.UIText = "Upgrade "+equippableAsset.type+"?";
+            return newCost;
         }
     }
 }

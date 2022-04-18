@@ -8,6 +8,7 @@ namespace Buildings
     public class ConstructionSite : MonoBehaviour,IInteractable,IHoverable
     {
         private ConstructionManager constructionManager;
+        public string uiText;
         [SerializeField] private Cost cost;
         [SerializeField] private GameObject Building;
         private void Start()
@@ -29,9 +30,12 @@ namespace Buildings
             Destroy(gameObject);
         }
 
-        public Cost OnHover()
+        public CostAndName OnHover()
         {
-            return cost;
+            CostAndName newCost = new CostAndName();
+            newCost.cost = cost;
+            newCost.UIText = uiText;
+            return newCost;
         }
     }
 }
