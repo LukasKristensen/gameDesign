@@ -112,18 +112,44 @@ namespace PellesAssets
 			backgroundMenu =root.Q<VisualElement>("Background");
 			upgradePlasticCost = root.Q<Label>("plastic-cost-label");
 			upgradeMetalCost = root.Q<Label>("metal-cost-label");
+			if (currentRightHand == Spear)
+			{
+				DrawEquipment(Hammer);
+			}
+			else
+			{
+				DrawEquipment(Spear);
+			}
+			if (currentRightHand == Spear)
+			{
+				DrawEquipment(Hammer);
+			}
+			else
+			{
+				DrawEquipment(Spear);
+			}
+			if (currentRightHand == Spear)
+			{
+				DrawEquipment(Hammer);
+			}
+			else
+			{
+				DrawEquipment(Spear);
+			}
 			
+			_inventory.Metal = 0;
+			_inventory.Plastic = 0;
 		}
 
 		private void Swap(InputAction.CallbackContext obj)
 		{
 			if (currentRightHand == Spear)
 			{
-				DrawEquipment(Hammer,false);
+				DrawEquipment(Hammer);
 			}
 			else
 			{
-				DrawEquipment(Spear,false);
+				DrawEquipment(Spear);
 			}
 		}
 
@@ -315,11 +341,17 @@ namespace PellesAssets
 			{
 				case EquippableType.Hammer:
 					Hammer = equippableAsset;
-					DrawEquipment(Hammer,false);
+					DrawEquipment(Hammer);
 					break;
 				case EquippableType.Spear:
 					Spear = equippableAsset;
-					DrawEquipment(Spear,true);
+					if(Spear.teir==0){
+						DrawEquipment(Spear);
+					}
+					else
+					{
+						DrawEquipment(Spear,Spear.instant.gameObject);
+					}
 					break;
 				case EquippableType.Shield:
 					break;
@@ -330,9 +362,15 @@ namespace PellesAssets
 			}
 		}
 		
-		private void DrawEquipment(EquippableAsset equippableAsset,bool deletePrevious)
+		private void DrawEquipment(EquippableAsset equippableAsset)
 		{
-			currentRightHand?.Holster(deletePrevious);
+			currentRightHand?.Holster();
+			currentRightHand = equippableAsset;
+			equippableAsset.Draw(transform);
+		}
+		private void DrawEquipment(EquippableAsset equippableAsset,GameObject previousTeir)
+		{
+			currentRightHand?.Holster(previousTeir);
 			currentRightHand = equippableAsset;
 			equippableAsset.Draw(transform);
 		}

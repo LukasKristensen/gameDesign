@@ -12,15 +12,15 @@ namespace Equipment
         public EquippableType type;
         public int teir;
         [HideInInspector]public Equippable instant;
-        public void Holster(bool deleteOnHolster)
+        public void Holster()
         {
-            if (deleteOnHolster)
-            {
-                Destroy(instant.gameObject);
-                return;
-            }
-            instant.gameObject.SetActive(false);
             instant.OnHolster();
+            instant.gameObject.SetActive(false);
+        }
+        public void Holster(GameObject previousTeir)
+        {
+            instant.OnHolster();
+            Destroy(previousTeir);
         }
         public void Draw(Transform player){
             if (instant== null)

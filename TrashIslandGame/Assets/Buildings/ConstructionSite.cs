@@ -14,7 +14,6 @@ namespace Buildings
         {
             constructionManager = FindObjectOfType<ConstructionManager>();
             constructionManager?.AddSite(gameObject);
-        
         }
 
         public void Interact(FPSController player, Inventory inventory)
