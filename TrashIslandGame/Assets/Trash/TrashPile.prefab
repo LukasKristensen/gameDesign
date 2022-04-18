@@ -94,7 +94,7 @@ MonoBehaviour:
   loot:
     Metal: 3
     Plastic: 3
-  SpawnCooldown: 2
+  SpawnCooldown: 8
   spawnPoint: {fileID: 584752719544802576}
   teirs:
   - {fileID: 1728379009990279520}
