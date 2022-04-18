@@ -18,14 +18,14 @@ public class EnemyBehavior : Killable
     [SerializeField] private GameObject arm1;
     [SerializeField] private GameObject arm2;
     [SerializeField] private GameObject trashPrefab;
-    private Animator animator;
+    public Animator animator;
     private NavMeshAgent navmeshagent;
 
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _manager = FindObjectOfType<FriendliesManager>();
-        animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
         navmeshagent = GetComponent<NavMeshAgent>();
     }
     private void Update()
@@ -47,7 +47,7 @@ public class EnemyBehavior : Killable
         {
             if (attackTimer<= 0)
             {
-                navmeshagent.enabled = false;
+                // navmeshagent.enabled = false;
                 Attack();
                 attackTimer = 1;
             }
@@ -55,7 +55,7 @@ public class EnemyBehavior : Killable
         else
         {
             animator.SetBool("Attack", false);
-            navmeshagent.enabled = true;
+            // navmeshagent.enabled = true;
         }
 
 
