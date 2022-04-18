@@ -47,6 +47,7 @@ public class EnemyBehavior : Killable
         {
             if (attackTimer<= 0)
             {
+                navmeshagent.enabled = false;
                 Attack();
                 attackTimer = 1;
             }
@@ -54,6 +55,7 @@ public class EnemyBehavior : Killable
         else
         {
             animator.SetBool("Attack", false);
+            navmeshagent.enabled = true;
         }
 
 
