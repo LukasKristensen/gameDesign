@@ -6758,7 +6758,7 @@ PrefabInstance:
       objectReference: {fileID: 412974706}
     - target: {fileID: 2878833797269565431, guid: 144180505ecae6d40a9fccc5a4d7081b, type: 3}
       propertyPath: rayCastRange
-      value: 7.26
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2878833797269565435, guid: 144180505ecae6d40a9fccc5a4d7081b, type: 3}
       propertyPath: m_RootOrder

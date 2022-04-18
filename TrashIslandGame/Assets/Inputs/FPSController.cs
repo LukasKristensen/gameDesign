@@ -160,12 +160,11 @@ namespace PellesAssets
 
 		private void Interact(InputAction.CallbackContext obj)
 		{
-			if (Physics.Raycast(transform.position,CinemachineCameraTarget.transform.forward,out RaycastHit hit))
+			if (!Physics.Raycast(transform.position, CinemachineCameraTarget.transform.forward, out RaycastHit hit,
+				rayCastRange)) return;
+			if (hit.collider.TryGetComponent(out IInteractable interactable))
 			{
-				if (hit.collider.TryGetComponent(out IInteractable interactable))
-				{
-					interactable.Interact( this,_inventory);
-				}
+				interactable.Interact( this,_inventory);
 			}
 		}
 
@@ -327,12 +326,16 @@ namespace PellesAssets
 
 		private void OnDrawGizmosSelected()
 		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawLine(transform.position,transform.position+transform.forward*rayCastRange);
 			Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
+			
 			Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
 
 			Gizmos.color = Grounded ? transparentGreen : transparentRed;
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+			
 		}
 
 		public void Equip(EquippableAsset equippableAsset)

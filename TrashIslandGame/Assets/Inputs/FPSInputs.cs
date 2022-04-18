@@ -244,6 +244,17 @@ public partial class @FPSInputs : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""219c9835-e36d-4534-9aa1-35aa7123c4c4"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ae57647b-ff5c-4483-97b8-fd6fc02fd88f"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
