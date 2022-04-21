@@ -1,47 +1,46 @@
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
+
 
 namespace Trash
 {
     public class TrashPileManager : MonoBehaviour
     {
-        public List<Transform> RefTrashPileLocations;
-        public List<Transform> TrashPileLocations;
-        public GameObject TrashPile;
-        public int maxAmountOfLiveLocations;
-        public int amountOfLiveLocations;
+        public List<TrashPile> TrashPiles;
+        [SerializeField] private float timer;
+        [SerializeField] private float cooldownTime;
+        
+
         private void Update()
         {
-            if (amountOfLiveLocations<maxAmountOfLiveLocations)
-            {
-                SpawnPileAtRandomLocation();
-            }
-        }
+            
+            if (TrashPiles.Count == 0) { return; }
 
-        private void SpawnPileAtRandomLocation()
-        {
-            int randomLocation = Random.Range(0,TrashPileLocations.Count);
-            Instantiate(TrashPile, TrashPileLocations[randomLocation].position, Quaternion.identity,TrashPileLocations[randomLocation]);
-            RemoveToLocations(TrashPileLocations[randomLocation]);
-        }
-
-        public void AddToLocations(Transform location)
-        {
-            if (!RefTrashPileLocations.Contains(location))
+            bool check = true;
+            foreach (var trashPile in TrashPiles.Where(trashPile => !trashPile.collected))
             {
-                RefTrashPileLocations.Add(location);
-                TrashPileLocations.Add(location);
-                return;
+                check = false;
             }
-            if (TrashPileLocations.Contains(location)) return;
-            TrashPileLocations.Add(location);
-            amountOfLiveLocations--;
-        }
-        public void RemoveToLocations(Transform location)
-        {
-            TrashPileLocations.Remove(location);
-            amountOfLiveLocations++;
+
+            if (check)
+            {
+                SceneManager.LoadScene("Scenes/WinGame");
+            }
+            if (timer < 0 )
+            {
+                int randomInt = Random.Range(0,TrashPiles.Count);
+                if (!TrashPiles[randomInt].full)
+                {
+                    TrashPiles[randomInt].SpawnFloatingTrash();
+                    timer = cooldownTime;
+                }
+            }
+            timer -= Time.deltaTime;
         }
     }
 }

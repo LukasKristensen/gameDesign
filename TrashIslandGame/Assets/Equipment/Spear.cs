@@ -15,15 +15,14 @@ namespace Equipment
 
         private void Start()
         {
-            
             _animator = GetComponent<Animator>();
             if (playerCamera == null)
             {
                 playerCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
             }
         }
-
-        public override void Fire(InputAction.CallbackContext callbackContext)
+        
+        public void Fire()
         {
             _animator.SetBool(Fire1,true);
             firing = true;
@@ -36,13 +35,12 @@ namespace Equipment
                 }
             }
         }
-
+        
         public void StopFiring()
         {
             firing = false;
             _animator.SetBool(Fire1,false);
             wait = false;
-        }
-
+        }   
     }
 }

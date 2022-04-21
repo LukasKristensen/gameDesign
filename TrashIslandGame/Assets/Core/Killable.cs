@@ -5,7 +5,7 @@ namespace Core
     public abstract class Killable : MonoBehaviour
     {
         public int health = 3;
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             health -= damage;
             if (health <= 0)

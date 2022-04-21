@@ -3,40 +3,62 @@ using Core;
 using InventoryItems;
 using PellesAssets;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Equipment
 {
     public class BuyingBox : MonoBehaviour,IInteractable,IHoverable
     {
         [SerializeField] private EquippableAsset equippableAsset;
+        [SerializeField] private EquippableController eController;
+        [SerializeField] private EquippableType type;
+        [SerializeField] private int teir;
+        [SerializeField] private Cost cost;
+        [SerializeField] private MeshRenderer _renderer;
+        [SerializeField] private BoxCollider _collider;
         
-        public void Interact(FPSController player, Inventory inventory)
+        private void Start()
         {
-            if (equippableAsset==null)
+            _renderer = GetComponent<MeshRenderer>();
+            _collider = GetComponent<BoxCollider>();
+            
+            
+            GameObject player = GameObject.Find("Player");
+            switch (type)
             {
-                Debug.Log("NO ASSET ASSIGNT TO " + gameObject.name);   
-                return;
-            }
-
-            switch (equippableAsset.type)
-            {
-                case EquippableType.Hammer:
-                    if (player.Hammer != null) return;
-                    break;
                 case EquippableType.Spear:
-                    if (player.Spear != null)
-                        if (player.Spear.teir >= equippableAsset.teir)
-                            return;
+                    eController = player.GetComponent<FPSController>().spear;
                     break;
                 case EquippableType.Shield:
+                    eController = player.GetComponent<FPSController>().shield;
                     break;
                 case EquippableType.Sword:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            if (!inventory.TryExchange(equippableAsset.cost)) return;
-            player.Equip(equippableAsset);
+        }
+
+        private void Update()
+        {
+            if (eController.currentTeir == teir-1)
+            {
+                _renderer.enabled = true;
+                _collider.enabled = true;
+            }
+            else
+            {
+                _renderer.enabled = false;
+                _collider.enabled = false;
+            }
+        }
+
+        public void Interact(FPSController player, Inventory inventory)
+        {
+            if (!inventory.TryExchange(cost)) return;
+
+            eController.Upgrade();
+            
             Destroy(gameObject);
         }
 
@@ -44,8 +66,8 @@ namespace Equipment
         public CostAndName OnHover()
         {
             CostAndName newCost = new CostAndName();
-            newCost.cost = equippableAsset.cost;
-            newCost.UIText = "Upgrade "+equippableAsset.type+"?";
+            newCost.cost = cost;
+            newCost.UIText = "Upgrade "+type+"?";
             return newCost;
         }
     }

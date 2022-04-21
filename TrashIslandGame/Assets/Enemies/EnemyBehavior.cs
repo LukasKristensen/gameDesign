@@ -9,15 +9,15 @@ using Object = UnityEngine.Object;
 
 public class EnemyBehavior : Killable
 {
-    [SerializeField] private Friendly target;
-    private NavMeshAgent _navMeshAgent;
-    private FriendliesManager _manager;
-    [SerializeField] private float attackRange;
-    [SerializeField] private float attackTimer;
-    [SerializeField] private int attackDamage;
-    [SerializeField] private GameObject arm1;
-    [SerializeField] private GameObject arm2;
-    [SerializeField] private GameObject trashPrefab;
+    [SerializeField] internal Friendly target;
+    internal NavMeshAgent _navMeshAgent;
+    internal FriendliesManager _manager;
+    [SerializeField] internal float attackRange;
+    [SerializeField] internal float attackTimer;
+    [SerializeField] internal int attackDamage;
+    [SerializeField] internal GameObject arm1;
+    [SerializeField] internal GameObject arm2;
+    [SerializeField] internal GameObject trashPrefab;
     public Animator animator;
     private NavMeshAgent navmeshagent;
 
@@ -43,7 +43,7 @@ public class EnemyBehavior : Killable
             }
         }
 
-        if ((target.transform.position-transform.position).sqrMagnitude<= attackRange)
+        if (AttackCheck())
         {
             if (attackTimer<= 0)
             {
@@ -58,8 +58,11 @@ public class EnemyBehavior : Killable
             // navmeshagent.enabled = true;
         }
 
-
-        _navMeshAgent.destination = target.transform.position;
+        if (!animator.GetBool("Attack"))
+        {
+            _navMeshAgent.destination = target.transform.position;
+        }
+        
 
         if (health<=5)
         {
@@ -67,12 +70,18 @@ public class EnemyBehavior : Killable
             arm2.SetActive(false);
         }
     }
+
+    internal virtual bool AttackCheck()
+    {
+
+        return (target.transform.position - transform.position).magnitude <= attackRange;
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,attackRange);
     }
-    private void Attack()
+    internal virtual void Attack()
     {
         target.TakeDamage(attackDamage);
         animator.SetBool("Attack", true);

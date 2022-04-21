@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
+using System;
 using Core;
 using Equipment;
 using InventoryItems;
@@ -8,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
@@ -23,6 +23,8 @@ namespace PellesAssets
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
+		[Tooltip("Sprint speed of the character in m/s")]
+		public float blockSpeed = 2.0f;
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
@@ -76,9 +78,8 @@ namespace PellesAssets
 		[SerializeField] private bool isSprinting;
 		private FPSInputs _fpsInputs;
 		public Inventory _inventory;
-		public EquippableAsset Spear;
-		public EquippableAsset Hammer;
-		public EquippableAsset currentRightHand;
+		public SpearController spear;
+		public ShieldController shield;
 		[SerializeField] private float rayCastRange;
 		private UIDocument upgradeMenu;
 		private VisualElement backgroundMenu;
@@ -106,57 +107,20 @@ namespace PellesAssets
 			_fpsInputs.Default.Jump.performed += AttemptJump;
 			_fpsInputs.Default.Interact.performed += Interact;
 			_fpsInputs.Default.Attack.performed += Fire;
-			_fpsInputs.Default.Equip1.performed += Swap;
 			upgradeMenu = GetComponent<UIDocument>();
 			var root = upgradeMenu.rootVisualElement;
 			backgroundMenu =root.Q<VisualElement>("Background");
 			upgradePlasticCost = root.Q<Label>("plastic-cost-label");
 			upgradeMetalCost = root.Q<Label>("metal-cost-label");
 			upgradeTitleCost = root.Q<Label>("title");
-			if (currentRightHand == Spear)
-			{
-				DrawEquipment(Hammer);
-			}
-			else
-			{
-				DrawEquipment(Spear);
-			}
-			if (currentRightHand == Spear)
-			{
-				DrawEquipment(Hammer);
-			}
-			else
-			{
-				DrawEquipment(Spear);
-			}
-			if (currentRightHand == Spear)
-			{
-				DrawEquipment(Hammer);
-			}
-			else
-			{
-				DrawEquipment(Spear);
-			}
 			
-			_inventory.Metal = 0;
-			_inventory.Plastic = 0;
-		}
-
-		private void Swap(InputAction.CallbackContext obj)
-		{
-			if (currentRightHand == Spear)
-			{
-				DrawEquipment(Hammer);
-			}
-			else
-			{
-				DrawEquipment(Spear);
-			}
+			//_inventory.Metal = 0;
+			//_inventory.Plastic = 0;
 		}
 
 		private void Fire(InputAction.CallbackContext obj)
 		{
-			currentRightHand?.instant?.Fire(obj);
+			spear.Fire();
 		}
 
 		private void Interact(InputAction.CallbackContext obj)
@@ -173,6 +137,7 @@ namespace PellesAssets
 		{
 			CheckForHoverables();
 			_inventory.health = health;
+			shield.blocking = _fpsInputs.Default.Block.IsPressed();
 		}
 
 		
@@ -183,12 +148,14 @@ namespace PellesAssets
 			GroundedCheck();
 			Move();
 			CameraRotation();
+			WaterCheck();
 		}
 		
 		private void CheckForHoverables()
 		{
 			if (Physics.Raycast(transform.position,CinemachineCameraTarget.transform.forward,out RaycastHit hit,rayCastRange))
 			{
+				
 				if (hit.collider.TryGetComponent(out IHoverable hoverable))
 				{
 					CostAndName costAndName = hoverable.OnHover();
@@ -201,11 +168,20 @@ namespace PellesAssets
 			}
 			backgroundMenu.visible = false;
 		}
+
 		
+		private void WaterCheck()
+		{
+			if (transform.position.y < -10 )
+			{
+				Die();
+			}
+		}
 
 		private void GroundedCheck()
 		{
-			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+			Transform t = transform;
+			Vector3 spherePosition = new Vector3(t.position.x, t.position.y - GroundedOffset, t.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 		}
 
@@ -228,8 +204,10 @@ namespace PellesAssets
 
 		private void Move()
 		{
+			isSprinting = _fpsInputs.Default.Sprint.IsPressed();
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = isSprinting ? SprintSpeed : MoveSpeed;
+			targetSpeed = _fpsInputs.Default.Block.IsPressed() ? blockSpeed:targetSpeed;
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 			Vector2 movementVector = _fpsInputs.Default.Movement.ReadValue<Vector2>();
@@ -336,48 +314,29 @@ namespace PellesAssets
 
 			Gizmos.color = Grounded ? transparentGreen : transparentRed;
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
-			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
-			
+			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius); 
 		}
 
-		public void Equip(EquippableAsset equippableAsset)
+		public override void Die()
 		{
-			switch (equippableAsset.type)
-			{
-				case EquippableType.Hammer:
-					Hammer = equippableAsset;
-					DrawEquipment(Hammer);
-					break;
-				case EquippableType.Spear:
-					Spear = equippableAsset;
-					if(Spear.teir==0){
-						DrawEquipment(Spear);
-					}
-					else
-					{
-						DrawEquipment(Spear,Spear.instant.gameObject);
-					}
-					break;
-				case EquippableType.Shield:
-					break;
-				case EquippableType.Sword:
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
+			SceneManager.LoadScene("Scenes/MainMenu");
 		}
-		
-		private void DrawEquipment(EquippableAsset equippableAsset)
+
+		public override void TakeDamage(int damage)
 		{
-			currentRightHand?.Holster();
-			currentRightHand = equippableAsset;
-			equippableAsset.Draw(transform);
+			int damageApplied = _fpsInputs.Default.Block.IsPressed() ? damage - shield.getBlockValue(): damage;
+			if (damageApplied < 0) return;
+			health -= damageApplied;
+			if (health <= 0)Die(); 
 		}
-		private void DrawEquipment(EquippableAsset equippableAsset,GameObject previousTeir)
+
+		private void OnDisable()
 		{
-			currentRightHand?.Holster(previousTeir);
-			currentRightHand = equippableAsset;
-			equippableAsset.Draw(transform);
+			_fpsInputs.Default.Jump.performed -= AttemptJump;
+			_fpsInputs.Default.Interact.performed -= Interact;
+			_fpsInputs.Default.Attack.performed -= Fire;
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
 		}
 	}
 }

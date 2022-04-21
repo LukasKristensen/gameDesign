@@ -7,7 +7,7 @@ namespace Core
     {
         public EquippableType type;
         public int teir;
-        public abstract void Fire(InputAction.CallbackContext callbackContext);
+        
         public virtual void OnDraw()
         {
             
