@@ -32,6 +32,7 @@ namespace Trash
         public bool collected;
         [SerializeField] private bool spawnTrash;
         [SerializeField] private SphereCollider _sphereCollider;
+        [SerializeField] private AudioSource _audioSource;
         
         private void Start()
         {
@@ -102,6 +103,7 @@ namespace Trash
         {
             teir--;
             inventory.TryExchange(loot);
+            _audioSource.Play();
             TeirChange(teir);
         }
         public void SpawnFloatingTrash()

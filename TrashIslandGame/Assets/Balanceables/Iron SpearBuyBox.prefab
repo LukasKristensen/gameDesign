@@ -118,8 +118,8 @@ MonoBehaviour:
   _collider: {fileID: 0}
   costAndName:
     cost:
-      Metal: 0
-      Plastic: 0
-    UIText: 
+      Metal: 20
+      Plastic: 40
+    UIText: Upgrade Spear?
     justInteract: 0
     loot: 0

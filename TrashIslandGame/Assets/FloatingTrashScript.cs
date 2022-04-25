@@ -11,9 +11,9 @@ public class FloatingTrashScript : MonoBehaviour,IHoverable,IInteractable
     public CostAndName cost;
     public Transform model;
     public LayerMask layerMask;
+    public SphereCollider collider;
     private void Update()
     {
-        
         if (Physics.Raycast(transform.position,Vector3.down,out RaycastHit hit,layerMask))
         {
             model.position = hit.point;

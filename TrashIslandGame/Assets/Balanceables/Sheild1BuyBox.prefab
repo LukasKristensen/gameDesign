@@ -119,6 +119,7 @@ MonoBehaviour:
   costAndName:
     cost:
       Metal: 0
-      Plastic: 0
-    UIText: 
+      Plastic: 10
+    UIText: Upgrade Shield?
     justInteract: 0
+    loot: 0

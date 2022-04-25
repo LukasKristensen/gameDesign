@@ -378,8 +378,8 @@ MonoBehaviour:
   costAndName:
     cost:
       Metal: 0
-      Plastic: 0
-    UIText: 
+      Plastic: 10
+    UIText: Build Trash Catcher?
     justInteract: 0
     loot: 0
   bought: 0

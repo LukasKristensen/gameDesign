@@ -97,9 +97,10 @@ MonoBehaviour:
   costAndName:
     cost:
       Metal: 0
-      Plastic: 0
-    UIText: 
+      Plastic: 10
+    UIText: Build WorkBench?
     justInteract: 0
+    loot: 0
 --- !u!1001 &2808117959744800080
 PrefabInstance:
   m_ObjectHideFlags: 0

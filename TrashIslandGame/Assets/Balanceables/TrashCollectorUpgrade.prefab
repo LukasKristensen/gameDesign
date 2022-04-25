@@ -112,8 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   costAndName:
     cost:
-      Metal: 0
-      Plastic: 0
-    UIText: 
+      Metal: 20
+      Plastic: 30
+    UIText: Upgrade Build Tools?
     justInteract: 0
     loot: 0

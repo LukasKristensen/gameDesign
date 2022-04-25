@@ -8,7 +8,8 @@ public class SpearController : EquippableController
 {
     [SerializeField] private List<GameObject> SpearPrefabs;
     [SerializeField] private Spear currentSpear;
-
+    public AudioSource audioSource;
+    
     private void Start()
     {
         currentSpear = Instantiate(SpearPrefabs[currentTeir], transform).GetComponent<Spear>();

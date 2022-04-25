@@ -116,9 +116,10 @@ MonoBehaviour:
   costAndName:
     cost:
       Metal: 0
-      Plastic: 0
-    UIText: 
+      Plastic: 4
+    UIText: Build Hut?
     justInteract: 0
+    loot: 0
 --- !u!1001 &3854356144791758178
 PrefabInstance:
   m_ObjectHideFlags: 0

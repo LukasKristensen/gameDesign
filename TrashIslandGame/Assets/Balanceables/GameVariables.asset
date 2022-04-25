@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba87610e82478754ba0eca7fbdb212b1, type: 3}
   m_Name: GameVariables
   m_EditorClassIdentifier: 
-  playerStartingHP: 30
-  fruitHeal: 0
-  BaseTrashSpawnRate: 3.26
+  playerStartingHP: 50
+  fruitHeal: 10
+  BaseTrashSpawnRate: 5
   MaxTrashSpawnRate: 0.5
-  TimeToMaxSpawnRate: 10.91
+  TimeToMaxSpawnRate: 300
   FloatingTrashSpeed: 0
-  WalkerHP: 0
-  WalkerDamage: 0
-  ShooterHp: 0
-  ShooterDamage: 0
+  WalkerHP: 9
+  WalkerDamage: 1
+  ShooterHp: 5
+  ShooterDamage: 1

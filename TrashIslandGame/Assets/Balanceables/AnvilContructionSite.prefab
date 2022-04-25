@@ -63,10 +63,11 @@ MonoBehaviour:
   justInteract: 0
   costAndName:
     cost:
-      Metal: 8
-      Plastic: 15
-    UIText: 
+      Metal: 20
+      Plastic: 0
+    UIText: Build Anvil?
     justInteract: 0
+    loot: 0
 --- !u!1 &6660334348568985976
 GameObject:
   m_ObjectHideFlags: 0
