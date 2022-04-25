@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using InventoryItems;
 using PellesAssets;
 using UnityEngine;
@@ -8,7 +9,7 @@ using Resources = InventoryItems.Resources;
 
 namespace Trash
 {
-    public class TrashPile : MonoBehaviour,IInteractable
+    public class TrashPile : MonoBehaviour,IInteractable,IHoverable
     {
         [SerializeField] private int teir = 0;
         [SerializeField] private GameObject enemyPrefab;
@@ -19,7 +20,7 @@ namespace Trash
         
         public bool full;
         
-        [SerializeField] private Loot loot;
+        [SerializeField] private CostAndName loot;
 
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private Transform floatingTrashGoal;
@@ -98,7 +99,7 @@ namespace Trash
         public void Interact(FPSController player, Inventory inventory)
         {
             teir--;
-            inventory.TryExchange(loot);
+            inventory.TryExchange(loot.cost);
             TeirChange(teir);
         }
         public void SpawnFloatingTrash()
@@ -109,6 +110,11 @@ namespace Trash
         public void Collected()
         {
             collected = true;
+        }
+
+        public CostAndName OnHover()
+        {
+            return loot;
         }
     }
 }

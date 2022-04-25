@@ -7,8 +7,10 @@ using PellesAssets;
 public class CollectFood : MonoBehaviour, IInteractable
 {
     public int healing = 15;
+    public GameVariables gameVariables;
     public void Interact(FPSController player, Inventory inventory)
     {
+        healing = gameVariables.fruitHeal;
         player.health += healing;
         Destroy(gameObject);
     }

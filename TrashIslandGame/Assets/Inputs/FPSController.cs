@@ -88,7 +88,7 @@ namespace PellesAssets
 		private Label upgradeMetalCost;
 		private Label upgradeTitleCost;
 		private const float _threshold = 0.01f;
-	
+		public GameVariables gameVariables;
 		
 		private void Start()
 		{
@@ -116,6 +116,7 @@ namespace PellesAssets
 			upgradeTitleCost = root.Q<Label>("title");
 			_inventory.Metal = 0;
 			_inventory.Plastic = 0;
+			health = gameVariables.playerStartingHP;
 		}
 
 		private void Fire(InputAction.CallbackContext obj)

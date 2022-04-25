@@ -370,6 +370,7 @@ MonoBehaviour:
   gettingHitAnimation: GettingHit
   animator: {fileID: 9032101757857303711}
   stopped: 0
+  gameVariables: {fileID: 11400000, guid: 04c3544c1349bea4590ec28dcc8bcdd6, type: 2}
 --- !u!1 &4456607954257848686
 GameObject:
   m_ObjectHideFlags: 0

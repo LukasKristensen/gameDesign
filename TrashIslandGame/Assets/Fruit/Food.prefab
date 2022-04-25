@@ -128,3 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healing: 15
+  gameVariables: {fileID: 11400000, guid: 04c3544c1349bea4590ec28dcc8bcdd6, type: 2}

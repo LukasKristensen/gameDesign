@@ -402,6 +402,7 @@ MonoBehaviour:
   gettingHitAnimation: 
   animator: {fileID: 9032101757857303711}
   stopped: 0
+  gameVariables: {fileID: 11400000, guid: 04c3544c1349bea4590ec28dcc8bcdd6, type: 2}
   bullet: {fileID: 4310928798383702570, guid: 58b68e353cc145f4daf6d3e0af0bd53b, type: 3}
   HandPoint: {fileID: 7187072961796221157}
 --- !u!1 &5265698513116225311

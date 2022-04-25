@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8538677466243119138}
   - component: {fileID: 7653670132645318491}
   m_Layer: 0
-  m_Name: Trash
+  m_Name: EnemyLootTrash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loot:
     cost:
-      Metal: 1
-      Plastic: 1
+      Metal: 8
+      Plastic: 12
     UIText: 
     justInteract: 1
 --- !u!1001 &2006756688617395268

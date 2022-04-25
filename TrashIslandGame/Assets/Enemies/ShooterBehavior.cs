@@ -12,8 +12,17 @@ public class ShooterBehavior : EnemyBehavior
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform HandPoint;
-    
+    private void Start()
+    {
+        AssignValues();
+        
+    }
 
+    internal override void AssignValues()
+    {
+        attackDamage = gameVariables.ShooterDamage;
+        health = gameVariables.ShooterHp;
+    }
     internal override bool AttackCheck()
     {
         if ((target.transform.position - transform.position).magnitude <= attackRange)

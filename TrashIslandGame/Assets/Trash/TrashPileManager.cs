@@ -14,13 +14,27 @@ namespace Trash
         public List<TrashPile> TrashPiles;
         [SerializeField] private float timer;
         [SerializeField] private float cooldownTime;
+        [SerializeField] private float minCooldownTime;
+        [SerializeField] private float maxCooldownTime;
+        [SerializeField] private float TimeToMax;
+        [SerializeField] private float gameTime;
         
+        public GameVariables gameVariables;
+        private void Start()
+        {
+            minCooldownTime = gameVariables.BaseTrashSpawnRate;
+            maxCooldownTime = gameVariables.MaxTrashSpawnRate;
+            TimeToMax = gameVariables.TimeToMaxSpawnRate;
+            cooldownTime = minCooldownTime;
+            gameTime = 0;
+        }
 
         private void Update()
         {
-            
             if (TrashPiles.Count == 0) { return; }
 
+            gameTime = gameTime < TimeToMax ? gameTime + Time.deltaTime : TimeToMax;
+            cooldownTime = Mathf.Lerp(minCooldownTime, maxCooldownTime, gameTime/TimeToMax);
             bool check = true;
             foreach (var trashPile in TrashPiles.Where(trashPile => !trashPile.collected))
             {

@@ -21,14 +21,28 @@ public class EnemyBehavior : Killable
     public Animator animator;
     private NavMeshAgent navmeshagent;
     [SerializeField] private bool stopped;
-
+    public GameVariables gameVariables;
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _manager = FindObjectOfType<FriendliesManager>();
         // animator = GetComponent<Animator>();
         navmeshagent = GetComponent<NavMeshAgent>();
+        
+
     }
+
+    private void Start()
+    {
+        AssignValues();
+    }
+    internal virtual void AssignValues()
+    {
+        attackDamage = gameVariables.WalkerDamage;
+        health = gameVariables.WalkerHP;
+        
+    }
+
     private void Update()
     {
         attackTimer -= Time.deltaTime;

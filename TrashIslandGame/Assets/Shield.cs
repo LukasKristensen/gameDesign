@@ -11,8 +11,7 @@ public class Shield : Equippable
     public int damageBlocked;
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private Vector3 offset;
-    
-    
+
     private void Start()
     {
         startPosition = transform.localPosition;
