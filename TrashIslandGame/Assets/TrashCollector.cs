@@ -16,7 +16,7 @@ public class TrashCollector : MonoBehaviour, IHoverable,IInteractable
 
     public void Interact(FPSController player, Inventory inventory)
     {
-        if (!inventory.TryExchange(costAndName.cost)) return;
+        if (!inventory.TryExchange(costAndName)) return;
         bought = true;
         foreach (var renderer in model.GetComponentsInChildren<MeshRenderer>())
         {

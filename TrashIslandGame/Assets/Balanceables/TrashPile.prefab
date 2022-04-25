@@ -108,6 +108,7 @@ MonoBehaviour:
       Plastic: 0
     UIText: 
     justInteract: 0
+    loot: 1
   spawnPoint: {fileID: 4449905637410134536}
   floatingTrashGoal: {fileID: 6515813592265551371}
   enemyManagerAsset: {fileID: 11400000, guid: 4d724478adc76bb4a918d44d57c3d813, type: 2}
@@ -121,6 +122,7 @@ MonoBehaviour:
   trashCollector: {fileID: 8132576474883941414}
   collected: 0
   spawnTrash: 0
+  _sphereCollider: {fileID: 1400647623360808823}
 --- !u!135 &1400647623360808823
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -132,8 +134,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
-  m_Center: {x: -1.89, y: 0.09, z: -0.6}
+  m_Radius: 1.23
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1279743382878936832
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +148,7 @@ GameObject:
   m_Layer: 0
   m_Name: FloatingTrashGoal
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -253,7 +255,7 @@ GameObject:
   m_Layer: 0
   m_Name: FloatingTrashSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -383,7 +385,7 @@ GameObject:
   m_Layer: 0
   m_Name: EnemySpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1837,7 +1839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5372431746224072107, guid: 878436b17d9856246847ed09ae23c26b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.449
+      value: -0.465
       objectReference: {fileID: 0}
     - target: {fileID: 5372431746224072107, guid: 878436b17d9856246847ed09ae23c26b, type: 3}
       propertyPath: m_LocalPosition.y

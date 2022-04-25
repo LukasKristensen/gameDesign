@@ -31,7 +31,8 @@ namespace Trash
         [SerializeField] private TrashCollector trashCollector;
         public bool collected;
         [SerializeField] private bool spawnTrash;
-
+        [SerializeField] private SphereCollider _sphereCollider;
+        
         private void Start()
         {
             TeirChange(teir);
@@ -95,11 +96,12 @@ namespace Trash
                 go.SetActive(false);
             }
             teirs[teir].SetActive(true);
+            _sphereCollider.enabled = teir != 0;
         }
         public void Interact(FPSController player, Inventory inventory)
         {
             teir--;
-            inventory.TryExchange(loot.cost);
+            inventory.TryExchange(loot);
             TeirChange(teir);
         }
         public void SpawnFloatingTrash()

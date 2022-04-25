@@ -102,6 +102,7 @@ public class EnemyBehavior : Killable
 
     public override void Die()
     {
+        Debug.Log("die");
         Instantiate(trashPrefab,transform.position,Quaternion.identity);
         Destroy(gameObject);
     }

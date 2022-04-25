@@ -110,19 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cce46b51fc540489ceb23bdf4a50ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashCollectors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   costAndName:
     cost:
-      Metal: 10
-      Plastic: 12
+      Metal: 0
+      Plastic: 0
     UIText: 
     justInteract: 0
+    loot: 0

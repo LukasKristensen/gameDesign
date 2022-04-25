@@ -51,6 +51,7 @@ MonoBehaviour:
       Plastic: 2
     UIText: 
     justInteract: 1
+    loot: 1
   model: {fileID: 6184208086006715004}
   layerMask:
     serializedVersion: 2

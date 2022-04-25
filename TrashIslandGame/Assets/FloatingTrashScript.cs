@@ -27,7 +27,7 @@ public class FloatingTrashScript : MonoBehaviour,IHoverable,IInteractable
 
     public void Interact(FPSController player, Inventory inventory)
     {
-        inventory.TryExchange(cost.cost);
+        inventory.TryExchange(cost);
         transform.GetComponentInParent<TrashPile>().floatingTrashs.Remove(transform);
         Destroy(gameObject);
     }

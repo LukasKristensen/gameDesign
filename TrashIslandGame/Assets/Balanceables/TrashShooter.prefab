@@ -397,7 +397,7 @@ MonoBehaviour:
   attackRange: 7.92
   attackTimer: 0
   attackDamage: 2
-  trashPrefab: {fileID: 0}
+  trashPrefab: {fileID: 6725803127198538343, guid: 756df534c683bdd47903dc7df1ef984a, type: 3}
   attackAnimation: 
   gettingHitAnimation: 
   animator: {fileID: 9032101757857303711}

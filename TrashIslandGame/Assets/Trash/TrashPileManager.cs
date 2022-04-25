@@ -11,7 +11,7 @@ namespace Trash
 {
     public class TrashPileManager : MonoBehaviour
     {
-        public List<TrashPile> TrashPiles;
+        public TrashPile[] TrashPiles;
         [SerializeField] private float timer;
         [SerializeField] private float cooldownTime;
         [SerializeField] private float minCooldownTime;
@@ -27,11 +27,13 @@ namespace Trash
             TimeToMax = gameVariables.TimeToMaxSpawnRate;
             cooldownTime = minCooldownTime;
             gameTime = 0;
+
+            TrashPiles = FindObjectsOfType<TrashPile>();
         }
 
         private void Update()
         {
-            if (TrashPiles.Count == 0) { return; }
+            if (TrashPiles.Length == 0) { return; }
 
             gameTime = gameTime < TimeToMax ? gameTime + Time.deltaTime : TimeToMax;
             cooldownTime = Mathf.Lerp(minCooldownTime, maxCooldownTime, gameTime/TimeToMax);
@@ -47,7 +49,7 @@ namespace Trash
             }
             if (timer < 0 )
             {
-                int randomInt = Random.Range(0,TrashPiles.Count);
+                int randomInt = Random.Range(0,TrashPiles.Length);
                 if (!TrashPiles[randomInt].full)
                 {
                     TrashPiles[randomInt].SpawnFloatingTrash();

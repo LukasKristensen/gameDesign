@@ -20,7 +20,7 @@ namespace Buildings
                 Debug.Log("NO BUILDING SET IN " + gameObject.name);
                 return;
             }
-            if (!inventory.TryExchange(costAndName.cost)) return;
+            if (!inventory.TryExchange(costAndName)) return;
             Building.SetActive(true);
             Destroy(gameObject);
         }

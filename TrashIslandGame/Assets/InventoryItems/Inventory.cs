@@ -9,20 +9,24 @@ namespace InventoryItems
         public int Metal;
         public int Plastic;
 
-        public bool TryExchange(Cost cost)
+        public bool TryExchange(CostAndName cost)
         {
-            if (Metal - cost.Metal < 0 || Plastic - cost.Plastic < 0)
+            if (cost.loot)
             {
-                return false;
+                Metal += cost.cost.Metal;
+                Plastic += cost.cost.Plastic;
+                return true;
             }
-            Metal -= cost.Metal;
-            Plastic -= cost.Plastic;
-            return true;
-        }
-        public void TryExchange(Loot loot)
-        {
-            Metal += loot.Metal;
-            Plastic += loot.Plastic;
+            else
+            {
+                if (Metal - cost.cost.Metal < 0 || Plastic - cost.cost.Plastic < 0)
+                {
+                    return false;
+                }
+                Metal -= cost.cost.Metal;
+                Plastic -= cost.cost.Plastic;
+                return true;
+            }
         }
     }
 }

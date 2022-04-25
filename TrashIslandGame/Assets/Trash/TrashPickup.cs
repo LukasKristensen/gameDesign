@@ -11,7 +11,11 @@ public class TrashPickup : MonoBehaviour,IInteractable,IHoverable
     [SerializeField] private CostAndName loot;
     public void Interact(FPSController player, Inventory inventory)
     {
-        inventory.TryExchange(loot.cost);
+        Debug.Log(inventory.Metal);
+        Debug.Log(loot.cost.Metal);
+        inventory.TryExchange(loot);
+        Debug.Log(loot.cost.Metal);
+        Debug.Log(inventory.Metal);
         Destroy(gameObject);
     }
 
