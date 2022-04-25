@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStartingHP: 30
   fruitHeal: 0
-  BaseTrashSpawnRate: 1.41
-  MaxTrashSpawnRate: 0.5
-  TimeToMaxSpawnRate: 10.87
+  BaseTrashSpawnRate: 1
+  MaxTrashSpawnRate: 1
+  TimeToMaxSpawnRate: 10
   FloatingTrashSpeed: 0
   WalkerHP: 0
   WalkerDamage: 0

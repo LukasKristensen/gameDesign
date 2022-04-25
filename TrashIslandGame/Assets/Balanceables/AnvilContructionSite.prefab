@@ -63,8 +63,8 @@ MonoBehaviour:
   justInteract: 0
   costAndName:
     cost:
-      Metal: 8
-      Plastic: 15
+      Metal: 0
+      Plastic: 0
     UIText: 
     justInteract: 0
 --- !u!1 &6660334348568985976
