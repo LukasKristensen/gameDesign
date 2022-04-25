@@ -18,7 +18,7 @@ public class ShooterBehavior : EnemyBehavior
     {
         if ((target.transform.position - transform.position).magnitude <= attackRange)
         {
-             Physics.Raycast(transform.position, transform.forward * attackRange,out RaycastHit hit);
+             Physics.Raycast(transform.position, (target.transform.position-transform.position) * attackRange,out RaycastHit hit);
              if (hit.collider.CompareTag("Player"))
              {
                  return true;

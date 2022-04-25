@@ -114,8 +114,8 @@ namespace PellesAssets
 			upgradePlasticCost = root.Q<Label>("plastic-cost-label");
 			upgradeMetalCost = root.Q<Label>("metal-cost-label");
 			upgradeTitleCost = root.Q<Label>("title");
-			//_inventory.Metal = 0;
-			//_inventory.Plastic = 0;
+			_inventory.Metal = 0;
+			_inventory.Plastic = 0;
 		}
 
 		private void Fire(InputAction.CallbackContext obj)
