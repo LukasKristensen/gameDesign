@@ -11,12 +11,29 @@ public class ShooterBehavior : EnemyBehavior
 {
 
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform HandPoint;
     
-    
+
+    internal override bool AttackCheck()
+    {
+        if ((target.transform.position - transform.position).magnitude <= attackRange)
+        {
+             Physics.Raycast(transform.position, transform.forward * attackRange,out RaycastHit hit);
+             if (hit.collider.CompareTag("Player"))
+             {
+                 return true;
+             }
+        }
+        return false;
+    }
     internal override void Attack()
     {
-        BulletScript instantatedBullet = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<BulletScript>();
+        animator.Play("Hit");
+    }
+
+    public void Shoot()
+    {
+        BulletScript instantatedBullet = Instantiate(bullet, HandPoint.position, Quaternion.identity).GetComponent<BulletScript>();
         instantatedBullet.target = target.transform;
-        animator.SetBool("Attack", true);
     }
 }

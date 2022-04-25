@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using InventoryItems;
 using PellesAssets;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Resources = InventoryItems.Resources;
 
 namespace Trash
@@ -21,8 +22,11 @@ namespace Trash
         [SerializeField] private Loot loot;
 
         [SerializeField] private Transform spawnPoint;
+        [SerializeField] private Transform floatingTrashGoal;
+        [SerializeField] private EnemyManagerAsset  enemyManagerAsset;
+        
         [SerializeField] private List<GameObject> teirs;
-        [SerializeField] private List<Transform> floatingTrashs;
+        public List<Transform> floatingTrashs;
         [SerializeField] private TrashCollector trashCollector;
         public bool collected;
         [SerializeField] private bool spawnTrash;
@@ -43,7 +47,7 @@ namespace Trash
             List<Transform> toRemove = new List<Transform>();
             foreach (var t  in floatingTrashs)
             {
-                Vector3 nextStep = transform.position - t.position;
+                Vector3 nextStep = floatingTrashGoal.position - t.position;
                 if (nextStep.magnitude <1)
                 {
                     if (trashCollector.bought) continue;
@@ -55,7 +59,11 @@ namespace Trash
                     }
                     else
                     {
-                        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity, transform.parent);
+                        int randomNumber = Random.Range(1,101);
+                        GameObject toSpawn = randomNumber < enemyManagerAsset.basicEnemyChance * 100
+                            ? enemyManagerAsset.basicEnemyPrefab
+                            : enemyManagerAsset.shooterEnemyPrefab;
+                        Instantiate(toSpawn, spawnPoint.position, Quaternion.identity, transform.parent);
                     }
                     toRemove.Add(t);
                 }

@@ -7,16 +7,16 @@ using UnityEngine.UIElements;
 
 namespace Equipment
 {
-    public class BuyingBox : MonoBehaviour,IInteractable,IHoverable
+    public class BuyingBox : MonoBehaviour, IHoverable,IInteractable
     {
         [SerializeField] private EquippableAsset equippableAsset;
         [SerializeField] private EquippableController eController;
         [SerializeField] private EquippableType type;
         [SerializeField] private int teir;
-        [SerializeField] private Cost cost;
         [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private BoxCollider _collider;
-        
+        [SerializeField] private CostAndName costAndName;
+
         private void Start()
         {
             _renderer = GetComponent<MeshRenderer>();
@@ -55,7 +55,7 @@ namespace Equipment
 
         public void Interact(FPSController player, Inventory inventory)
         {
-            if (!inventory.TryExchange(cost)) return;
+            if (!inventory.TryExchange(costAndName.cost)) return;
 
             eController.Upgrade();
             
@@ -65,10 +65,7 @@ namespace Equipment
 
         public CostAndName OnHover()
         {
-            CostAndName newCost = new CostAndName();
-            newCost.cost = cost;
-            newCost.UIText = "Upgrade "+type+"?";
-            return newCost;
+            return costAndName;
         }
     }
 }

@@ -113,8 +113,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loot:
-    Metal: 1
-    Plastic: 2
+    cost:
+      Metal: 1
+      Plastic: 1
+    UIText: 
+    justInteract: 1
 --- !u!1001 &2006756688617395268
 PrefabInstance:
   m_ObjectHideFlags: 0

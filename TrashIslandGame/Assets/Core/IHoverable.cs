@@ -1,9 +1,10 @@
 using InventoryItems;
+using UnityEngine;
 
 namespace Core
 {
     public interface IHoverable
     {
-        CostAndName OnHover();
+        public CostAndName OnHover();
     }
 }

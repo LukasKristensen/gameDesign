@@ -6,17 +6,17 @@ using PellesAssets;
 using Trash;
 using UnityEngine;
 
-public class TrashCollector : MonoBehaviour,IInteractable,IHoverable
+public class TrashCollector : MonoBehaviour, IHoverable,IInteractable
 {
     [SerializeField] private GameObject model;
-    [SerializeField] private Cost cost;
-    [SerializeField] private string uiText = "Build TrashCollector?";
     [SerializeField] private Material boughtMat;
+    [SerializeField] private CostAndName costAndName;
+    
     public bool bought;
 
     public void Interact(FPSController player, Inventory inventory)
     {
-        if (!inventory.TryExchange(cost)) return;
+        if (!inventory.TryExchange(costAndName.cost)) return;
         bought = true;
         foreach (var renderer in model.GetComponentsInChildren<MeshRenderer>())
         {
@@ -28,9 +28,6 @@ public class TrashCollector : MonoBehaviour,IInteractable,IHoverable
 
     public CostAndName OnHover()
     {
-        CostAndName newCost = new CostAndName();
-        newCost.cost = cost;
-        newCost.UIText = uiText;
-        return newCost;
+        return costAndName;
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309e2a03de8440c398d41044fd636266, type: 3}
+  m_Name: EnemyManagerAsset
+  m_EditorClassIdentifier: 
+  basicEnemyPrefab: {fileID: 4309070254314490133, guid: 80e9a6ebe2ce4734caeba1fc353d6011, type: 3}
+  basicEnemyChance: 0.75
+  shooterEnemyPrefab: {fileID: 4309070254314490133, guid: f5e3743f46784834982ec096886d0a6c, type: 3}
+  shooterEnemyChance: 0.25

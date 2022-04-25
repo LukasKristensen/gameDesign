@@ -15,11 +15,12 @@ public class EnemyBehavior : Killable
     [SerializeField] internal float attackRange;
     [SerializeField] internal float attackTimer;
     [SerializeField] internal int attackDamage;
-    [SerializeField] internal GameObject arm1;
-    [SerializeField] internal GameObject arm2;
     [SerializeField] internal GameObject trashPrefab;
+    [SerializeField] private string attackAnimation;
+    [SerializeField] private string gettingHitAnimation;
     public Animator animator;
     private NavMeshAgent navmeshagent;
+    [SerializeField] private bool stopped;
 
     private void Awake()
     {
@@ -47,30 +48,24 @@ public class EnemyBehavior : Killable
         {
             if (attackTimer<= 0)
             {
-                // navmeshagent.enabled = false;
                 Attack();
                 attackTimer = 1;
             }
         }
-        else
-        {
-            animator.SetBool("Attack", false);
-            // navmeshagent.enabled = true;
-        }
 
-        if (!animator.GetBool("Attack"))
-        {
-            _navMeshAgent.destination = target.transform.position;
-        }
+        navmeshagent.isStopped = stopped;
         
-
-        if (health<=5)
-        {
-            arm1.SetActive(false);
-            arm2.SetActive(false);
-        }
+        _navMeshAgent.destination = target.transform.position;
     }
 
+    public void Walk()
+    {
+        stopped = false;
+    }
+
+    public void Stop()
+    {
+        stopped = true;}
     internal virtual bool AttackCheck()
     {
 
@@ -83,14 +78,26 @@ public class EnemyBehavior : Killable
     }
     internal virtual void Attack()
     {
-        target.TakeDamage(attackDamage);
-        animator.SetBool("Attack", true);
-
+        animator.Play("Hit");
     }
+
+    public void HitPlayer()
+    {
+        target.TakeDamage(attackDamage);
+    }
+
     public override void Die()
     {
         Instantiate(trashPrefab,transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
-    
+    public override void TakeDamage(int damage)
+    {
+        health -= damage;
+        animator.Play("GettingHit");
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
 }

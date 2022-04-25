@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   target: {fileID: 0}
-  attackRange: 32.78
+  attackRange: 10.4
   attackTimer: 0
   attackDamage: 2
   arm1: {fileID: 1294409645102129669}

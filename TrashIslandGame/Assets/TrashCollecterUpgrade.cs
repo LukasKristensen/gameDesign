@@ -5,16 +5,14 @@ using InventoryItems;
 using PellesAssets;
 using UnityEngine;
 
-public class TrashCollecterUpgrade : MonoBehaviour,IInteractable,IHoverable
+public class TrashCollecterUpgrade : MonoBehaviour, IHoverable,IInteractable
 {
-    [SerializeField] private Cost cost;
-    [SerializeField] private string uiText = "Upgrade Building Tools?";
     [SerializeField] private List<GameObject> trashCollectors;
-    
+    [SerializeField] private CostAndName costAndName;
     
     public void Interact(FPSController player, Inventory inventory)
     {
-        if (!inventory.TryExchange(cost)) return;
+        if (!inventory.TryExchange(costAndName.cost)) return;
 
         foreach (var trashCollector in trashCollectors)
         {
@@ -25,9 +23,6 @@ public class TrashCollecterUpgrade : MonoBehaviour,IInteractable,IHoverable
 
     public CostAndName OnHover()
     {
-        CostAndName newCost = new CostAndName();
-        newCost.cost = cost;
-        newCost.UIText = uiText;
-        return newCost;
+        return costAndName;
     }
 }

@@ -83,6 +83,7 @@ namespace PellesAssets
 		[SerializeField] private float rayCastRange;
 		private UIDocument upgradeMenu;
 		private VisualElement backgroundMenu;
+		public GameObject eToInteractUIHolder;
 		private Label upgradePlasticCost;
 		private Label upgradeMetalCost;
 		private Label upgradeTitleCost;
@@ -113,7 +114,6 @@ namespace PellesAssets
 			upgradePlasticCost = root.Q<Label>("plastic-cost-label");
 			upgradeMetalCost = root.Q<Label>("metal-cost-label");
 			upgradeTitleCost = root.Q<Label>("title");
-			
 			//_inventory.Metal = 0;
 			//_inventory.Plastic = 0;
 		}
@@ -159,6 +159,11 @@ namespace PellesAssets
 				if (hit.collider.TryGetComponent(out IHoverable hoverable))
 				{
 					CostAndName costAndName = hoverable.OnHover();
+					if (costAndName.justInteract)
+					{
+						eToInteractUIHolder.SetActive(true);
+						return;
+					}
 					backgroundMenu.visible = true;
 					upgradeTitleCost.text = costAndName.UIText;
 					upgradeMetalCost.text = costAndName.cost.Metal.ToString();
@@ -166,6 +171,8 @@ namespace PellesAssets
 					return;
 				}
 			}
+
+			eToInteractUIHolder.SetActive(false);
 			backgroundMenu.visible = false;
 		}
 
