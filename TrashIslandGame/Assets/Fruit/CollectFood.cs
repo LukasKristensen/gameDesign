@@ -12,6 +12,7 @@ public class CollectFood : MonoBehaviour, IInteractable
     {
         healing = gameVariables.fruitHeal;
         player.health += healing;
+        player.GetComponent<AudioSource>().Play();
         Destroy(gameObject);
     }
 }

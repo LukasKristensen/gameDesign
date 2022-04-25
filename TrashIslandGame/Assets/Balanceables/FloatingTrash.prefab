@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4759015025009254557}
   - component: {fileID: 7223586066335465822}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: FloatingTrash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922078477673230, guid: e90f3565c0687a74db2ed0504ebd6243, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4644228265360266, guid: e90f3565c0687a74db2ed0504ebd6243, type: 3}
       propertyPath: m_RootOrder

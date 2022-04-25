@@ -48,18 +48,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4163590920174144, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4163590920174144, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4163590920174144, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4163590920174144, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.3880033
       objectReference: {fileID: 0}
@@ -99,10 +87,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4163590920174144, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
 --- !u!4 &1383197396210170990 stripped
@@ -110,22 +94,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4163590920174144, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
   m_PrefabInstance: {fileID: 1386211997033645614}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1386880608849429938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1091709128295324, guid: ea43cab2c8552d9418bd6a742a8855ad, type: 3}
-  m_PrefabInstance: {fileID: 1386211997033645614}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1386211998231650754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386880608849429938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecba335835f1c2d4d9ee8fc92d37ebdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healing: 15
-  gameVariables: {fileID: 11400000, guid: 04c3544c1349bea4590ec28dcc8bcdd6, type: 2}
